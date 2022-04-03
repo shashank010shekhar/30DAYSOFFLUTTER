@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  final double days = 30;
-  final  String name = "Shanky";
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +11,7 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Container(
-          child: Text("HEY,$days days of $name"),
+          child: Text("Welcome to our authentication app"),
         ),
       ),
       drawer: Drawer(),
