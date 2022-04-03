@@ -1,12 +1,14 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/utils/routes.dart';
 
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: Colors.white,
+      color: Colors.white,
+      child: SingleChildScrollView(
         child: Column(
           children: [
             Image.asset("assets/images/login.png", fit: BoxFit.cover),
@@ -15,7 +17,7 @@ class LoginPage extends StatelessWidget {
             ),
             Text("Welcome",
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 28,
                   fontWeight: FontWeight.bold,
                 )),
             SizedBox(
@@ -38,18 +40,20 @@ class LoginPage extends StatelessWidget {
                         labelText: "Password",
                       )),
                   SizedBox(
-                    height: 20.0,
+                    height: 40.0,
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        print("Hello,user");
+                        Navigator.pushNamed(context, MyRoutes.homeRoute);
                       },
                       child: Text("Login"),
-                      style: TextButton.styleFrom()),
+                      style: TextButton.styleFrom(minimumSize: Size(150, 40))),
                 ],
               ),
             ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
