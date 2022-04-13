@@ -53,12 +53,12 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     TextFormField(
                       decoration: InputDecoration(
-                        hintText: "Enter Username",
-                        labelText: "Username",
+                        hintText: "Enter Email",
+                        labelText: "Email",
                       ),
                       validator: (value) {
                         if (value != null && value.isEmpty) {
-                          return "Username cannot be empty";
+                          return "Email cannot be empty";
                         }
                         return null;
                       },
