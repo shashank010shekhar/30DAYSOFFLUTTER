@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../widgets/drawer.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
  
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,8 +12,13 @@ class _HomePageState extends State<HomePage> {
         title:Text("Authentication App"),
       ),
       body: Center(
-        child: Container(
-          child: Text("Welcome to our authentication app"),
+        child: Column(
+          children: [
+            Container(
+              child: Text("Welcome to our authentication app"),
+            ),
+            
+          ],
         ),
       ),
       drawer: MyDrawer(),
