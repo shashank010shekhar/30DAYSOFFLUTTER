@@ -47,6 +47,7 @@ android {
         applicationId "com.example.flutter_catalog"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
+        minSdkVersion 21  
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
