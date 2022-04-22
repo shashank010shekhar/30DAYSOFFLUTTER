@@ -1,125 +1,186 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_catalog/utils/routes.dart';
+import 'authentication.dart';
+import 'home_page.dart';
+import 'sign_up.dart';
 
-class LoginPage extends StatefulWidget {
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
-  String name = "";
-  bool changeButton = false;
-  final _formKey = GlobalKey<FormState>();
-  moveToHome(BuildContext context) async {
-    if (_formKey.currentState!.validate()){
-    setState(() {
-      changeButton = true;
-    });
-    await Future.delayed(Duration(seconds: 1));
-    Navigator.pushNamed(context, MyRoutes.homeRoute);
-    setState(() {
-      changeButton = false;
-    });
-  }
-  }
-
+class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      child: SingleChildScrollView(
-        child: Form(
-          key: _formKey,
-          child: Column(
+    return Scaffold(
+      body: ListView(
+        padding: EdgeInsets.all(8.0),
+        children: <Widget>[
+          SizedBox(height: 80),
+          // logo
+          Column(
             children: [
-              Image.asset("assets/images/login.png", fit: BoxFit.cover),
-              SizedBox(
-                height: 20.0,
+              FlutterLogo(
+                size: 55,
               ),
-              Text("Welcome $name",
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                  )),
-              SizedBox(
-                height: 20.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                    vertical: 16.0, horizontal: 32.0),
-                child: Column(
-                  children: [
-                    TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Enter Email",
-                        labelText: "Email",
-                      ),
-                      validator: (value) {
-                        if (value != null && value.isEmpty) {
-                          return "Email cannot be empty";
-                        }
-                        return null;
-                      },
-                      onChanged: (value) {
-                        name = value;
-                        setState(() {});
-                      },
-                    ),
-                    TextFormField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          hintText: "Enter Password",
-                          labelText: "Password",
-                        ),
-                        validator: (value) {
-                        if (value != null && value.isEmpty) {
-                          return "Password cannot be empty";
-                        }
-                        else if (value != null && value.length<6) {
-                          return "Paswword length should be atleast 6";
-                        }
-                        return null;
-                      },),
-                    SizedBox(
-                      height: 40.0,
-                    ),
-                    Material(
-                      color: Colors.deepPurple,
-                      borderRadius:
-                          BorderRadius.circular(changeButton ? 50 : 8),
-                      child: InkWell(
-                        onTap: () => moveToHome(context),
-                        child: AnimatedContainer(
-                          duration: Duration(seconds: 1),
-                          width: changeButton ? 50 : 150,
-                          height: 50,
-                          alignment: Alignment.center,
-                          child: changeButton
-                              ? Icon(Icons.done, color: Colors.white)
-                              : Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
-                        ),
-                      ),
-                    )
-                    // ElevatedButton(
-                    //     onPressed: () {
-                    //       Navigator.pushNamed(context, MyRoutes.homeRoute);
-                    //     },
-                    //     child: Text("Login"),
-                    //     style: TextButton.styleFrom(minimumSize: Size(150, 40))),
-                  ],
-                ),
+              SizedBox(height: 50),
+              Text(
+                'Welcome back!',
+                style: TextStyle(fontSize: 24),
               ),
             ],
           ),
-        ),
+
+          SizedBox(
+            height: 50,
+          ),
+
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: LoginForm(),
+          ),
+
+          SizedBox(height: 20),
+
+          Row(
+            children: <Widget>[
+              SizedBox(width: 30),
+              Text('New here ? ',
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+              GestureDetector(
+                onTap: () {
+                  // Navigator.pushNamed(context, '/signup');
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Signup()));
+                },
+                child: Text('Get Registered Now!!',
+                    style: TextStyle(fontSize: 20, color: Colors.blue)),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+
+}
+
+class LoginForm extends StatefulWidget {
+  LoginForm({Key? key}) : super(key: key);
+
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  final _formKey = GlobalKey<FormState>();
+
+  String? email;
+  String? password;
+
+  bool _obscureText = true;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: <Widget>[
+          // email
+          TextFormField(
+            // initialValue: 'Input text',
+            decoration: InputDecoration(
+              prefixIcon: Icon(Icons.email_outlined),
+              labelText: 'Email',
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  const Radius.circular(100.0),
+                ),
+              ),
+            ),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
+            onSaved: (val) {
+              email = val;
+            },
+          ),
+          SizedBox(
+            height: 20,
+          ),
+
+          // password
+          TextFormField(
+            // initialValue: 'Input text',
+            decoration: InputDecoration(
+              labelText: 'Password',
+              prefixIcon: Icon(Icons.lock_outline),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  const Radius.circular(100.0),
+                ),
+              ),
+              suffixIcon: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                },
+                child: Icon(
+                  _obscureText ? Icons.visibility_off : Icons.visibility,
+                ),
+              ),
+            ),
+            obscureText: _obscureText,
+            onSaved: (val) {
+              password = val;
+            },
+            validator: (value) {
+              if (value!.isEmpty) {
+                return 'Please enter some text';
+              }
+              return null;
+            },
+          ),
+
+          SizedBox(height: 30),
+
+          SizedBox(
+            height: 54,
+            width: 184,
+            child: ElevatedButton(
+              onPressed: () {
+                // Respond to button press
+
+                if (_formKey.currentState!.validate()) {
+                  _formKey.currentState!.save();
+
+                  AuthenticationHelper()
+                      .signIn(email: email!, password: password!)
+                      .then((result) {
+                    if (result == null) {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => Login()));
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(
+                          result,
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ));
+                    }
+                  });
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(24.0)))),
+              child: Text(
+                'Login',
+                style: TextStyle(fontSize: 24),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
