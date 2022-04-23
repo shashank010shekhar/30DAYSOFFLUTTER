@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_catalog/pages/config.dart';
 import 'package:flutter_catalog/pages/scan.dart';
 import 'drawer.dart';
 import 'Start.dart';
@@ -22,15 +23,37 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:Text("Authentication App"),
+        title:Text("Pro-Check"),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+             child:Icon(Icons.logout_rounded,color: Colors.white,),
+          onPressed: () {
           signOut();
         },
-        child: Icon(Icons.logout_rounded,color: Colors.white,),
+        
         backgroundColor: Colors.deepPurple,
+        heroTag: null,
+          ),
+        SizedBox(height: 10,),
+        FloatingActionButton.extended( 
+          label:Text(''),
+          icon: Icon(Icons.lightbulb,color: Colors.white,),
+        
+            onPressed: () {
+            currentTheme.switchTheme();
+              },       
+                  
+              backgroundColor: Colors.deepPurple,
+              
+              heroTag: null,    
+        
+      )
+      ],
       ),
+    
       body: Container(
         width: 500,
         height: 500,
@@ -54,7 +77,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(height: 10),
- 
+           
             //Second Button
             
           ],
