@@ -14,9 +14,10 @@ class Login extends StatelessWidget {
           // logo
           Column(
             children: [
-              FlutterLogo(
-                size: 55,
-              ),
+              Container(
+              margin: EdgeInsets.fromLTRB(1.0, 100.0, 3.0, 4.0),
+              child: Image(image: AssetImage("assets/images/login.png"),),
+            ),
               SizedBox(height: 50),
               Text(
                 'Welcome back!',

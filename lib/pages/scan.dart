@@ -46,7 +46,8 @@ class _ScanQRState extends State<ScanQR> {
           String codeSanner = await BarcodeScanner.scan();    //barcode scanner
           setState(() {
             qrCodeResult = codeSanner;
-          });
+          }
+          );
         },
         child: Text("Open Scanner",style: TextStyle(color: Colors.deepPurple),),
         //Button having rounded rectangle border
