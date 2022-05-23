@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/pages/config.dart';
 
-class denied extends StatefulWidget {
+class aboutus extends StatefulWidget {
  
 
   @override
-  State<denied> createState() => _deniedState();
+  State<aboutus> createState() => _aboutusState();
 }
 
-class _deniedState extends State<denied> {
+class _aboutusState extends State<aboutus> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(title: Text("RESULT"),backgroundColor: Colors.deepPurple,foregroundColor: Colors.white,),
+        appBar: AppBar(title: Text("ABOUT US"),backgroundColor: Colors.deepPurple,foregroundColor: Colors.white,),
         body: Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text("YOUR PRODUCT IS FAKE!!!!!",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.deepPurple),),
-              SizedBox(height: 10,),
-                Image.asset("assets/images/denied.gif",width: 200,
-                height: 200,),
+              Padding(
+                padding: const EdgeInsets.all(30.0),
+                child: Text("This project has been made by:-\nShashank Shekhar Dubey \NUnder the supervision of Rajeev Sir.\n I would like to thank sir for the guidance and support",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.black,),),
+              ),
+              
                 SizedBox(height: 20.0,),
                 
               ElevatedButton(

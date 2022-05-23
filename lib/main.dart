@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/pages/Start.dart';
+import 'package:flutter_catalog/pages/aboutus.dart';
 import 'package:flutter_catalog/pages/config.dart';
+import 'package:flutter_catalog/pages/denied.dart';
 import 'package:flutter_catalog/pages/home_page.dart';
 import 'package:flutter_catalog/pages/login_page.dart';
 import 'package:flutter_catalog/pages/scan.dart';
 import 'package:flutter_catalog/pages/sign_up.dart';
+import 'package:flutter_catalog/pages/verfied.dart';
 import 'package:flutter_catalog/utils/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -70,6 +73,9 @@ class _GoogleState extends State<Google> {
         MyRoutes.loginRoute: (context) => Login(),
         MyRoutes.signuproute: (context) => Signup(),
         MyRoutes.scanqr: (context) => ScanQR(),
+        MyRoutes.verified:(context) => verified(),
+        MyRoutes.denied:(context)=> denied(),
+        MyRoutes.aboutus:(context)=> aboutus()
       },
     );
   }

@@ -5,4 +5,7 @@ class MyRoutes {
   static String signuproute = "/SignUp";
   static String startpage = "/Start";
   static String scanqr = "/ScanQR";
+  static String verified = "/verified";
+  static String denied = "/denied";
+  static String aboutus = "/aboutus";
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_catalog/pages/Contact.dart';
+import 'package:flutter_catalog/pages/aboutus.dart';
 import 'package:flutter_catalog/pages/home_page.dart';
 import 'package:flutter_catalog/utils/routes.dart';
 import 'theme.dart';
@@ -52,6 +53,10 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
             ListTile(
+              onTap: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => aboutus()));
+              },
               leading: Icon(
                 CupertinoIcons.info_circle,
                 color: Colors.deepPurple,

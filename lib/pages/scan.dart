@@ -1,5 +1,7 @@
 import 'package:barcode_scan_fix/barcode_scan.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_catalog/pages/denied.dart';
+import 'package:flutter_catalog/pages/verfied.dart';
  
 class ScanQR extends StatefulWidget {
   @override
@@ -23,18 +25,7 @@ class _ScanQRState extends State<ScanQR> {
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
       //Message displayed over here
-      Text(
-        "Result",
-        style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-        textAlign: TextAlign.center,
-      ),
-      Text(
-        qrCodeResult,
-        style: TextStyle(
-          fontSize: 20.0,
-        ),
-        textAlign: TextAlign.center,
-      ),
+      
       SizedBox(
         height: 20.0,
       ),
@@ -47,7 +38,16 @@ class _ScanQRState extends State<ScanQR> {
           setState(() {
             qrCodeResult = codeSanner;
           }
+          
           );
+          if (qrCodeResult == "001") {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => verified()));
+          }
+          else {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => denied()));
+          }
         },
         child: Text("Open Scanner",style: TextStyle(color: Colors.deepPurple),),
         //Button having rounded rectangle border
@@ -56,6 +56,7 @@ class _ScanQRState extends State<ScanQR> {
           borderRadius: BorderRadius.circular(20.0),
         ),
       ),
+      
  
          ],
         ),
